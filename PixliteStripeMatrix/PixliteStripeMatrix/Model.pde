@@ -5,7 +5,9 @@ LXModel buildModel() {
 
 public static class GridModel3D extends LXModel {
   
-  public final static int SIZE = 20;
+  // 15 stripes, 3 meters long, 30 pixels per meter
+  public final static int SIZE_X = 15;
+  public final static int SIZE_Y = 90;
   
   public GridModel3D() {
     super(new Fixture());
@@ -13,13 +15,11 @@ public static class GridModel3D extends LXModel {
   
   public static class Fixture extends LXAbstractFixture {
     Fixture() {
-      for (int z = 0; z < SIZE; ++z) {
-        for (int y = 0; y < SIZE; ++y) {
-          for (int x = 0; x < SIZE; ++x) {
-            addPoint(new LXPoint(x, y, z));
+        for (int x = 0; x < SIZE_X; ++x) {
+          for (int y = 0; y < SIZE_Y; ++y) {
+            addPoint(new LXPoint(x, y));
           }
         }
-      }
     }
   }
 }

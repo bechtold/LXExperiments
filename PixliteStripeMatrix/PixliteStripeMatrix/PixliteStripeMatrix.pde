@@ -33,6 +33,26 @@ void setup() {
 
 void initialize(heronarts.lx.studio.LXStudio lx, heronarts.lx.studio.LXStudio.UI ui) {
   // Add custom components or output drivers here
+  final String ARTNET_IP = "192.168.1.2";
+  try {
+    // Construct a new DatagramOutput object
+    LXDatagramOutput output = new LXDatagramOutput(lx);
+
+     //Each output of the Pixlite is configured to run on a separate universe
+     for (int universeNumber = 0; universeNumber <= 3; ++universeNumber){
+      int[] first100Points = new int[90];
+      for (int i = 0; i < first100Points.length; ++i) {
+        first100Points[i] = i + (90 * universeNumber);
+      }
+      ArtNetDatagram first100PointsDatagram = new ArtNetDatagram(first100Points, universeNumber);
+      first100PointsDatagram.setAddress(ARTNET_IP);
+      output.addDatagram(first100PointsDatagram);    
+     }
+    // Add the datagram output to the LX engine
+    lx.addOutput(output);
+  } catch (Exception x) {
+    x.printStackTrace();
+  }
 }
 
 void onUIReady(heronarts.lx.studio.LXStudio lx, heronarts.lx.studio.LXStudio.UI ui) {
