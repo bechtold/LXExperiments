@@ -35,6 +35,8 @@ public static class GridModel3D extends LXModel {
           addPoints(strip);
           Strip strip2 = new Strip(new LXTransform().translate(STRIP_SPACING, 0, 0));
           addPoints(strip2);
+          Strip strip3 = new Strip(new LXTransform().translate(2*STRIP_SPACING, 0, 0));
+          addPoints(strip3);
       }
     }
     
@@ -105,12 +107,11 @@ public static class Strip extends LXModel {
   
   private static class Fixture extends LXAbstractFixture {
     Fixture(LXTransform t, Orientation orientation) {
-      float offset = 0;
       t.push();
-      t.translate(0, offset+=LED_OFFSET, 0);
+      t.translate(0, LED_OFFSET, 0);
       addPoint(new LXPoint(t));
       for(int i = 0; i<NUM_LEDS; i++){
-        t.translate(0, offset+=LED_SPACING, 0);
+        t.translate(0, LED_SPACING, 0);
         addPoint(new LXPoint(t));
       }
     }
