@@ -6,7 +6,8 @@ LXModel buildModel() {
 }
 
 public static class GridModel3D extends LXModel {
-  
+    public static final float STRIP_SPACING = 5*CM;
+
   public enum ModelMode {
     SINGLE_STRIP,
     MULTI_STRIP
@@ -30,6 +31,10 @@ public static class GridModel3D extends LXModel {
           Strip strip = new Strip();
           addPoints(strip);
       } else if(mode == ModelMode.MULTI_STRIP) {
+          Strip strip = new Strip();
+          addPoints(strip);
+          Strip strip2 = new Strip(new LXTransform().translate(STRIP_SPACING, 0, 0));
+          addPoints(strip2);
       }
     }
     
