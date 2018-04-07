@@ -24,6 +24,9 @@
 // Reference to top-level LX instance
 heronarts.lx.studio.LXStudio lx;
 
+GridModel3D.ModelMode modelMode = GridModel3D.ModelMode.MULTI_STRIP;
+
+
 void setup() {
   // Processing setup, constructs the window and the LX instance
   size(800, 720, P3D);
@@ -33,26 +36,26 @@ void setup() {
 
 void initialize(heronarts.lx.studio.LXStudio lx, heronarts.lx.studio.LXStudio.UI ui) {
   // Add custom components or output drivers here
-  final String ARTNET_IP = "192.168.1.2";
-  try {
-    // Construct a new DatagramOutput object
-    LXDatagramOutput output = new LXDatagramOutput(lx);
+  //final String ARTNET_IP = "192.168.1.2";
+  //try {
+  //  // Construct a new DatagramOutput object
+  //  LXDatagramOutput output = new LXDatagramOutput(lx);
 
-     //Each output of the Pixlite is configured to run on a separate universe
-     for (int universeNumber = 0; universeNumber <= 3; ++universeNumber){
-      int[] first100Points = new int[90];
-      for (int i = 0; i < first100Points.length; ++i) {
-        first100Points[i] = i + (90 * universeNumber);
-      }
-      ArtNetDatagram first100PointsDatagram = new ArtNetDatagram(first100Points, universeNumber);
-      first100PointsDatagram.setAddress(ARTNET_IP);
-      output.addDatagram(first100PointsDatagram);    
-     }
-    // Add the datagram output to the LX engine
-    lx.addOutput(output);
-  } catch (Exception x) {
-    x.printStackTrace();
-  }
+  //   //Each output of the Pixlite is configured to run on a separate universe
+  //   for (int universeNumber = 0; universeNumber <= 3; ++universeNumber){
+  //    int[] first100Points = new int[90];
+  //    for (int i = 0; i < first100Points.length; ++i) {
+  //      first100Points[i] = i + (90 * universeNumber);
+  //    }
+  //    ArtNetDatagram first100PointsDatagram = new ArtNetDatagram(first100Points, universeNumber);
+  //    first100PointsDatagram.setAddress(ARTNET_IP);
+  //    output.addDatagram(first100PointsDatagram);    
+  //   }
+  //  // Add the datagram output to the LX engine
+  //  lx.addOutput(output);
+  //} catch (Exception x) {
+  //  x.printStackTrace();
+  //}
 }
 
 void onUIReady(heronarts.lx.studio.LXStudio lx, heronarts.lx.studio.LXStudio.UI ui) {
@@ -75,3 +78,8 @@ final static float FT = FEET;
 final static float CM = 2.54 * IN;
 final static float MM = CM * .1;
 final static float M = CM * 00;
+
+// Helpful global constants
+final static float INCHES_PER_METER = 39.3701;
+final static float METERS = INCHES_PER_METER * INCHES ;
+final static float METERS_PER_INCH = 1 / INCHES_PER_METER;
