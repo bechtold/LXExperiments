@@ -2,40 +2,29 @@ import java.util.List;
 
 LXModel buildModel() {
   // A three-dimensional grid model
-  return new GridModel3D(modelMode);
+  return new GridModel3D();
 }
 
 public static class GridModel3D extends LXModel {
-    public static final float STRIP_SPACING = 5*CM;
-
-  public enum ModelMode {
-    SINGLE_STRIP,
-    MULTI_STRIP
-  }
+  public static final float STRIP_SPACING = 5*CM;
   
-  public GridModel3D(ModelMode mode) {
-    super(new Fixture(mode));
+  public GridModel3D() {
+    super(new Fixture());
   }
   
   public static class Fixture extends LXAbstractFixture {
 
-    Fixture(ModelMode mode) {
-        
-      if(mode == ModelMode.SINGLE_STRIP) {
-          Strip strip = new Strip();
-          addPoints(strip);
-      } else if(mode == ModelMode.MULTI_STRIP) {
-          Strip strip = new Strip();
-          addPoints(strip);
-          Strip strip2 = new Strip(new LXTransform().translate(STRIP_SPACING, 0, 0));
-          addPoints(strip2);
-          Strip strip3 = new Strip(new LXTransform().translate(2*STRIP_SPACING, 0, 0));
-          addPoints(strip3);
-          Strip strip4 = new Strip(new LXTransform().translate(2*STRIP_SPACING, 0, STRIP_SPACING));
-          addPoints(strip4);
-          Strip strip5 = new Strip(new LXTransform().translate(2*STRIP_SPACING, 0, 2*STRIP_SPACING));
-          addPoints(strip5);
-      }
+    Fixture() {
+        Strip strip = new Strip();
+        addPoints(strip);
+        Strip strip2 = new Strip(new LXTransform().translate(STRIP_SPACING, 0, 0));
+        addPoints(strip2);
+        Strip strip3 = new Strip(new LXTransform().translate(2*STRIP_SPACING, 0, 0));
+        addPoints(strip3);
+        Strip strip4 = new Strip(new LXTransform().translate(2*STRIP_SPACING, 0, STRIP_SPACING));
+        addPoints(strip4);
+        Strip strip5 = new Strip(new LXTransform().translate(2*STRIP_SPACING, 0, 2*STRIP_SPACING));
+        addPoints(strip5);
     }
     
 

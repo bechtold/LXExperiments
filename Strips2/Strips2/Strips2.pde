@@ -24,8 +24,6 @@
 // Reference to top-level LX instance
 heronarts.lx.studio.LXStudio lx;
 
-GridModel3D.ModelMode modelMode = GridModel3D.ModelMode.MULTI_STRIP;
-
 
 void setup() {
   // Processing setup, constructs the window and the LX instance
