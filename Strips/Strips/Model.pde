@@ -12,12 +12,6 @@ public static class GridModel3D extends LXModel {
     SINGLE_STRIP,
     MULTI_STRIP
   }
-
-  
-  // 15 stripes, 3 meters long, 30 pixels per meter
-  public final static int SIZE_X = 15;
-  public final static int SIZE_Y = 90;
-  public final static int SIZE_Z = 50;
   
   public GridModel3D(ModelMode mode) {
     super(new Fixture(mode));
@@ -37,6 +31,10 @@ public static class GridModel3D extends LXModel {
           addPoints(strip2);
           Strip strip3 = new Strip(new LXTransform().translate(2*STRIP_SPACING, 0, 0));
           addPoints(strip3);
+          Strip strip4 = new Strip(new LXTransform().translate(2*STRIP_SPACING, 0, STRIP_SPACING));
+          addPoints(strip4);
+          Strip strip5 = new Strip(new LXTransform().translate(2*STRIP_SPACING, 0, 2*STRIP_SPACING));
+          addPoints(strip5);
       }
     }
     
@@ -45,8 +43,7 @@ public static class GridModel3D extends LXModel {
 }
 
 /**
- * The base addressable fixture, a Leaf with LEDs embedded inside.
- * Currently modeled as a single point. Room for improvement!
+ * The base addressable fixture, a Strip with LEDs embedded inside.
  */
 public static class Strip extends LXModel {
   public static final int NUM_LEDS = 30; // 3 m with 30 LEDs/m
