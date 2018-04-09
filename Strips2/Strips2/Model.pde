@@ -15,16 +15,11 @@ public static class GridModel3D extends LXModel {
   public static class Fixture extends LXAbstractFixture {
 
     Fixture() {
-        Strip strip = new Strip();
+        StripModel strip = new StripModel(new StripModel.Metrics(15).setOrigin(0,0,5));
         addPoints(strip);
-        Strip strip2 = new Strip(new LXTransform().translate(STRIP_SPACING, 0, 0));
+        StripModel strip2 = new StripModel(new StripModel.Metrics(15).setOrigin(0,0,5));
         addPoints(strip2);
-        Strip strip3 = new Strip(new LXTransform().translate(2*STRIP_SPACING, 0, 0));
-        addPoints(strip3);
-        Strip strip4 = new Strip(new LXTransform().translate(2*STRIP_SPACING, 0, STRIP_SPACING));
-        addPoints(strip4);
-        Strip strip5 = new Strip(new LXTransform().translate(2*STRIP_SPACING, 0, 2*STRIP_SPACING));
-        addPoints(strip5);
+        //new LXTransform().translate(STRIP_SPACING, 0, 0)
     }
     
 
@@ -32,7 +27,7 @@ public static class GridModel3D extends LXModel {
 }
 
 /**
- * The base addressable fixture, a Strip with LEDs embedded inside.
+ * The base addressabl  e fixture, a Strip with LEDs embedded inside.
  */
 public static class Strip extends LXModel {
   public static final int NUM_LEDS = 30; // 3 m with 30 LEDs/m
